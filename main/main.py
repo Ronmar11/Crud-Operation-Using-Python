@@ -30,7 +30,7 @@ def main():
         choice = input("Enter your choice: ")
 
         if choice in actions:
-            actions[choice]()
+            actions[choice](items)
         elif choice == '5':
             print("Exiting the program.")
             break
@@ -40,4 +40,5 @@ def main():
 
 
 if __name__ == "__main__":
+    items = []
     main()
