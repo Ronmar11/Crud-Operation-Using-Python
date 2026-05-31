@@ -1,0 +1,10 @@
+git init = ito yung pinaka first step bago kayo mag push ng code sa github mag cecreate kayo ng local repository
+git status = i checheck nito kung naiadd nyona sa local github yung lahat ng nabago sa system nyo, ginagamit ito pag tapos nyong mag git add . dapat naka green yung mga file if nag "git add ." na kayo it means na naka add na and ready to push na sa github repository
+git add . = ginagamit para maiadd yung changes sa local repository sa pc nyo plng to 
+git commit -m "text ito na gusto nyong ipangalan sa pinush nyo for example about sa create" then it should be like this " git commit -m"adding create function" "
+git push origin main - ito yung ginagamit na commant pag ipupush nyo na inadd nyo sa local repo na changes sa github repository pag main yung nasa dula ibig sabihin sa main na branch nyo sya ilalagay. pero since iba iba yung ginagawa natin, gagamit tayo ng branch
+git checkout name_of_branch - ito yung mag chachange ng branch kung saan nyo ilalagay na branch yung ipupush nyo like this "git checkout ron" 
+git pull origin main - kukunin nyo yung laman ng main papunta sa local file nyo, pwede rin "git pull origin ron" if may gusto kayong balikan na history sa pinush nyo sa github
+git clone <repo_Url> - clone nyo yung pinaka main repository ng project
+git checkour -b feature/create-module - ginagamit pag mag cecreate ng branch gamit yung git command
+
