@@ -7,4 +7,3 @@ git checkout name_of_branch - ito yung mag chachange ng branch kung saan nyo ila
 git pull origin main - kukunin nyo yung laman ng main papunta sa local file nyo, pwede rin "git pull origin ron" if may gusto kayong balikan na history sa pinush nyo sa github
 git clone <repo_Url> - clone nyo yung pinaka main repository ng project
 git checkour -b feature/create-module - ginagamit pag mag cecreate ng branch gamit yung git command
-git check -1
