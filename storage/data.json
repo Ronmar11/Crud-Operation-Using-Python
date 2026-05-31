@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "item_id": 1,
+        "name": "Apple",
+        "price": 150.0,
+        "image_url": "asdf"
+    }
+]
