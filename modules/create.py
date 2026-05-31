@@ -5,47 +5,48 @@ class Item:
         self.price = price
         self.image_url = image_url
 
-    def display(self):
-        print(f"ID: {self.item_id}")
-        print(f"Name: {self.name}")
-        print(f"Price: ${self.price:.2f}")
-        print(f"Image Link: {self.image_url}")
+    def to_dict(self):
+        return {
+            "item_id": self.item_id,
+            "name": self.name,
+            "price": self.price,
+            "image_url": self.image_url
+        }
 
 
 def add_item(items):
-    print("\n=== Create Item ===")
+    print("\n=== CREATE ITEM ===")
 
-    item_id = input("\nEnter item ID: ").strip()
+    item_id = input("Enter item ID: ").strip()
 
     if not item_id.isdigit():
-        print("Invalid item ID. It should be a number.")
+        print("Invalid ID. Must be a number.")
         return
 
     item_id = int(item_id)
 
-    if any(item.item_id == item_id for item in items):
+    if any(item["item_id"] == item_id for item in items):
         print("Item ID already exists.")
         return
 
     name = input("Enter item name: ").strip()
-
-    if name == "":
-        print("Item name cannot be empty.")
+    if not name:
+        print("Name cannot be empty.")
         return
 
     try:
-        price = float(input("Enter item price: "))
+        price = float(input("Enter price: "))
     except ValueError:
         print("Invalid price.")
         return
 
-    image_url = input("Enter item image URL: ").strip()
-
-    if image_url == "":
+    image_url = input("Enter image URL: ").strip()
+    if not image_url:
         print("Image URL cannot be empty.")
         return
 
     new_item = Item(item_id, name, price, image_url)
-    items.append(new_item)
+
+    items.append(new_item.to_dict())
 
     print("Item added successfully.")
