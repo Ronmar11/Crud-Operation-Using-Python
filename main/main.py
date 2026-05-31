@@ -1,6 +1,24 @@
-from modules import create, read, update, delete
+from pathlib import Path
+import sys
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from modules.create import add_item
+from modules.read import show_items
+from modules.update import modify_item
+from modules.delete import remove_item
 
 def main():
+    actions = {
+        '1': add_item,
+        '2': show_items,
+        '3': modify_item,
+        '4': remove_item,
+    }
+
     while True:
         print("\nMenu:")
         print("1. Create")
@@ -11,17 +29,15 @@ def main():
 
         choice = input("Enter your choice: ")
 
-        if choice == '1':
-            create()
-        elif choice == '2':
-            read()
-        elif choice == '3':
-            update()
-        elif choice == '4':
-            delete()
+        if choice in actions:
+            actions[choice]()
         elif choice == '5':
             print("Exiting the program.")
             break
         else:
             print("Invalid choice. Please try again.")
-            break
+            continue
+
+
+if __name__ == "__main__":
+    main()
