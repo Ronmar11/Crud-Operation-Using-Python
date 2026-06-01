@@ -1,0 +1,14 @@
+[
+    {
+        "item_id": 1,
+        "name": "Apple",
+        "price": 150.0,
+        "image_url": "asdf"
+    },
+    {
+        "item_id": 2,
+        "name": "Espresso",
+        "price": 129.0,
+        "image_url": "fere"
+    }
+]

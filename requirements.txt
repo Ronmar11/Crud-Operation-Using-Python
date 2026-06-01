@@ -1,0 +1,5 @@
+input validation
+search feature
+timestamps
+ID auto-increment
+confirmation before delete
