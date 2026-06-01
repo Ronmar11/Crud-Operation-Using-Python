@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 def remove_item(items):
     print("\n=== DELETE ITEM ===")
 
@@ -34,3 +35,7 @@ def remove_item(items):
         print(f"Item '{item_to_delete['name']}' has been deleted successfully.")
     else:
         print("Deletion cancelled.")
+=======
+def remove_item():
+    print("Delete function here")
+>>>>>>> 8bc12d7d762bd00656d487dcf8fff9af92f518dd

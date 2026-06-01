@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class Item:
     def __init__(self, item_id, name, price, image_url):
         self.item_id = item_id
@@ -50,3 +51,7 @@ def add_item(items):
     items.append(new_item.to_dict())
 
     print("Item added successfully.")
+=======
+def add_item():
+    print("Create function here")
+>>>>>>> 8bc12d7d762bd00656d487dcf8fff9af92f518dd
