@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 from modules.create import Item
 from utils.file_handle import load_data, save_data
@@ -112,7 +111,3 @@ def modify_item():
 
     save_data(to_save)
     print("Changes saved.")
-=======
-def modify_item():
-    print("Update function here")
->>>>>>> 8bc12d7d762bd00656d487dcf8fff9af92f518dd
