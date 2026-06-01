@@ -6,4 +6,10 @@ git push origin main - ito yung ginagamit na commant pag ipupush nyo na inadd ny
 git checkout name_of_branch - ito yung mag chachange ng branch kung saan nyo ilalagay na branch yung ipupush nyo like this "git checkout ron" 
 git pull origin main - kukunin nyo yung laman ng main papunta sa local file nyo, pwede rin "git pull origin ron" if may gusto kayong balikan na history sa pinush nyo sa github
 git clone <repo_Url> - clone nyo yung pinaka main repository ng project
+<<<<<<< HEAD
 git checkour -b feature/create-module - ginagamit pag mag cecreate ng branch gamit yung git command
+=======
+git checkour -b feature/create-module - ginagamit pag mag cecreate ng branch gamit yung git command
+git config --global user.name "gitname"
+git config --global user.name                      
+>>>>>>> 8fccb5673d66e5b9f8c676cfa3e01224b87bb7ac
