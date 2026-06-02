@@ -4,5 +4,11 @@
         "name": "Espresso",
         "price": 120.0,
         "image_url": "https://www.sharmispassions.com/wp-content/uploads/2012/07/espresso-coffee-recipe04-500x375.jpg"
+    },
+    {
+        "item_id": 2,
+        "name": "Caramel",
+        "price": 129.0,
+        "image_url": "EGre"
     }
 ]
