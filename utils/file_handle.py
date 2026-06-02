@@ -1,14 +1,26 @@
 import json
+from pathlib import Path
+from typing import List, Any
+import logging
 
-FILE_PATH = "storage/data.json"
+DATA_FILE = Path(__file__).resolve().parents[1] / "storage" / "data.json"
 
-def load_data():
+
+def load_data() -> List[Any]:
     try:
-        with open(FILE_PATH, "r") as f:
+        if not DATA_FILE.exists():
+            return []
+        with open(DATA_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
-    except:
+    except (json.JSONDecodeError, OSError) as exc:
+        logging.warning("Failed loading data.json: %s", exc)
         return []
 
-def save_data(data):
-    with open(FILE_PATH, "w") as f:
-        json.dump(data, f, indent=4)
+
+def save_data(data: List[Any]) -> None:
+    try:
+        DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with open(DATA_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=4, ensure_ascii=False)
+    except OSError as exc:
+        logging.error("Failed saving data.json: %s", exc)

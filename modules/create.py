@@ -1,64 +1,41 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 8fccb5673d66e5b9f8c676cfa3e01224b87bb7ac
-class Item:
-    def __init__(self, item_id, name, price, image_url):
-        self.item_id = item_id
-        self.name = name
-        self.price = price
-        self.image_url = image_url
-
-    def to_dict(self):
-        return {
-            "item_id": self.item_id,
-            "name": self.name,
-            "price": self.price,
-            "image_url": self.image_url
-        }
+from modules.models import Item
+from services.item_service import ItemService
 
 
-def add_item(items):
+def add_item(service: ItemService) -> bool:
     print("\n=== CREATE ITEM ===")
 
     item_id = input("Enter item ID: ").strip()
-
     if not item_id.isdigit():
         print("Invalid ID. Must be a number.")
-        return
+        return False
 
     item_id = int(item_id)
-
-    if any(item["item_id"] == item_id for item in items):
+    if service.find(item_id) is not None:
         print("Item ID already exists.")
-        return
+        return False
 
     name = input("Enter item name: ").strip()
     if not name:
         print("Name cannot be empty.")
-        return
+        return False
 
     try:
         price = float(input("Enter price: "))
     except ValueError:
         print("Invalid price.")
-        return
+        return False
 
     image_url = input("Enter image URL: ").strip()
     if not image_url:
         print("Image URL cannot be empty.")
-        return
+        return False
 
-    new_item = Item(item_id, name, price, image_url)
+    new_item = Item(item_id=item_id, name=name, price=price, image_url=image_url)
 
-    items.append(new_item.to_dict())
-
-<<<<<<< HEAD
-    print("Item added successfully.")
-=======
-    print("Item added successfully.")
-=======
-def add_item():
-    print("Create function here")
->>>>>>> 8bc12d7d762bd00656d487dcf8fff9af92f518dd
->>>>>>> 8fccb5673d66e5b9f8c676cfa3e01224b87bb7ac
+    created = service.create(new_item)
+    if created:
+        print("Item added successfully.")
+    else:
+        print("Failed to add item.")
+    return created

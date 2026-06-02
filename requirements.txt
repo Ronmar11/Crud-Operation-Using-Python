@@ -1,5 +1,11 @@
-input validation
-search feature
-timestamps
-ID auto-increment
-confirmation before delete
+ # Development notes (kept as comments)
+# input validation
+# search feature
+# timestamps
+# ID auto-increment
+# confirmation before delete
+
+to run the app:
+terminal:
+        python -m pip install flask
+        python api/app.py

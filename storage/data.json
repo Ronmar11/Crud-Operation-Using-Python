@@ -1,25 +1,8 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 8fccb5673d66e5b9f8c676cfa3e01224b87bb7ac
 [
     {
         "item_id": 1,
-        "name": "Apple",
-        "price": 150.0,
-        "image_url": "asdf"
-    },
-    {
-        "item_id": 2,
         "name": "Espresso",
-        "price": 129.0,
-        "image_url": "fere"
+        "price": 120.0,
+        "image_url": "https://www.sharmispassions.com/wp-content/uploads/2012/07/espresso-coffee-recipe04-500x375.jpg"
     }
-<<<<<<< HEAD
 ]
-=======
-]
-=======
-[]
->>>>>>> 8bc12d7d762bd00656d487dcf8fff9af92f518dd
->>>>>>> 8fccb5673d66e5b9f8c676cfa3e01224b87bb7ac

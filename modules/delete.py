@@ -1,47 +1,35 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 8fccb5673d66e5b9f8c676cfa3e01224b87bb7ac
-def remove_item(items):
+from services.item_service import ItemService
+
+
+def remove_item(service: ItemService) -> bool:
     print("\n=== DELETE ITEM ===")
 
+    items = service.list_items()
     if not items:
         print("No items to delete.")
-        return
+        return False
 
     print("\nAvailable Items:")
     for item in items:
-        print(f"ID: {item['item_id']}, Name: {item['name']}, Price: ${item['price']}")
+        print(f"ID: {item.item_id}, Name: {item.name}, Price: ${item.price}")
 
     item_id_input = input("\nEnter item ID to delete: ").strip()
-
     if not item_id_input.isdigit():
         print("Invalid ID. Must be a number.")
-        return
+        return False
 
     item_id = int(item_id_input)
-
-    item_to_delete = None
-    for item in items:
-        if item["item_id"] == item_id:
-            item_to_delete = item
-            break
-
-    if item_to_delete is None:
+    target = service.find(item_id)
+    if target is None:
         print(f"Item with ID {item_id} not found.")
-        return
+        return False
 
-    confirm = input(f"Are you sure you want to delete '{item_to_delete['name']}'? (yes/no): ").strip().lower()
-
+    confirm = input(f"Are you sure you want to delete '{target.name}'? (yes/no): ").strip().lower()
     if confirm == "yes":
-        items.remove(item_to_delete)
-        print(f"Item '{item_to_delete['name']}' has been deleted successfully.")
+        deleted = service.delete(item_id)
+        if deleted:
+            print(f"Item '{target.name}' has been deleted successfully.")
+        return deleted
     else:
         print("Deletion cancelled.")
-<<<<<<< HEAD
-=======
-=======
-def remove_item():
-    print("Delete function here")
->>>>>>> 8bc12d7d762bd00656d487dcf8fff9af92f518dd
->>>>>>> 8fccb5673d66e5b9f8c676cfa3e01224b87bb7ac
+        return False

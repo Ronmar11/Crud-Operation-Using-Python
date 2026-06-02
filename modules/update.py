@@ -1,60 +1,33 @@
-
-from modules.create import Item
-from utils.file_handle import load_data, save_data
+from services.item_service import ItemService
 
 
-def modify_item():
-    """Load items from storage, allow the user to modify one, then save."""
-    print("\n=== Update Item ===")
+def modify_item(service: ItemService) -> bool:
+    print("\n=== UPDATE ITEM ===")
 
-    raw = load_data()
-    if not raw:
+    items = service.list_items()
+    if not items:
         print("No items available to update.")
-        return
+        return False
 
-    # Convert stored dicts to Item objects (be permissive with types)
-    items = []
-    for d in raw:
-        try:
-            iid = int(d.get("item_id", d.get("id", 0)))
-        except (TypeError, ValueError):
-            iid = 0
-        name = d.get("name", "")
-        try:
-            price = float(d.get("price", 0))
-        except (TypeError, ValueError):
-            price = 0.0
-        image = d.get("image_url", d.get("image", ""))
-        items.append(Item(iid, name, price, image))
-
-    # Display all items
     print("\nAvailable items:")
     for item in items:
-        print(f"ID: {item.item_id} | Name: {item.name} | Price: ${item.price:.2f}")
+        print(f"ID: {item.item_id} | Name: {item.name} | Price: ${item.price}")
 
     item_id = input("\nEnter item ID to update: ").strip()
     if not item_id.isdigit():
         print("Invalid item ID. It should be a number.")
-        return
+        return False
 
     item_id = int(item_id)
 
-    # Find the item
-    item_to_update = None
-    for item in items:
-        if item.item_id == item_id:
-            item_to_update = item
-            break
-
-    if item_to_update is None:
+    target = service.find(item_id)
+    if not target:
         print(f"Item with ID {item_id} not found.")
-        return
+        return False
 
-    # Display current item details
     print("\nCurrent item details:")
-    item_to_update.display()
+    print(f"ID: {target.item_id} | Name: {target.name} | Price: ${target.price}")
 
-    # Choose what to update
     print("\nWhat would you like to update?")
     print("1. Name")
     print("2. Price")
@@ -67,47 +40,40 @@ def modify_item():
         new_name = input("Enter new item name: ").strip()
         if new_name == "":
             print("Item name cannot be empty.")
-            return
-        item_to_update.name = new_name
-        print("Item name updated successfully.")
+            return False
+        changed = service.update(item_id, name=new_name)
+        if changed:
+            print("Item name updated successfully.")
+        return changed
 
     elif choice == "2":
         try:
             new_price = float(input("Enter new item price: "))
             if new_price < 0:
                 print("Price cannot be negative.")
-                return
-            item_to_update.price = new_price
-            print("Item price updated successfully.")
+                return False
+            changed = service.update(item_id, price=new_price)
+            if changed:
+                print("Item price updated successfully.")
+            return changed
         except ValueError:
             print("Invalid price.")
-            return
+            return False
 
     elif choice == "3":
         new_image_url = input("Enter new image URL: ").strip()
         if new_image_url == "":
             print("Image URL cannot be empty.")
-            return
-        item_to_update.image_url = new_image_url
-        print("Item image URL updated successfully.")
+            return False
+        changed = service.update(item_id, image_url=new_image_url)
+        if changed:
+            print("Item image URL updated successfully.")
+        return changed
 
     elif choice == "4":
         print("Update cancelled.")
-        return
+        return False
 
     else:
         print("Invalid choice.")
-        return
-
-    # Persist changes back to storage
-    to_save = []
-    for item in items:
-        to_save.append({
-            "item_id": item.item_id,
-            "name": item.name,
-            "price": item.price,
-            "image_url": item.image_url,
-        })
-
-    save_data(to_save)
-    print("Changes saved.")
+        return False
